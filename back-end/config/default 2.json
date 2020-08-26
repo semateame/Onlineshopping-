@@ -1,0 +1,3 @@
+{
+    "mongoUri": "mongodb+srv://semere:task@cluster0.6ldk1.mongodb.net/NEIGHBORHOOD-MARKET?retryWrites=true&w=majority"
+}

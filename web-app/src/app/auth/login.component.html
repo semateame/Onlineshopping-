@@ -1,0 +1,41 @@
+<div class="login">
+
+    <div class="outlet">
+
+    </div>
+
+    <mat-card class="example-card ">
+        <mat-card-header>
+
+            <mat-card-title> Log-in</mat-card-title>
+
+        </mat-card-header>
+
+        <mat-card-content>
+            <mat-error *ngIf="!isSigned">invalid password or email </mat-error>
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="frmclass">
+
+
+                <mat-form-field appearance="outline" floatLable="auto" class="input">
+                    <mat-label>email </mat-label>
+                    <input minlength="4" matInput type="text" id="email" formControlName="email">
+                    <mat-error *ngIf="loginForm.get('email').invalid">this field is required</mat-error>
+                </mat-form-field><br>
+
+                <mat-form-field floatLable="auto" appearance="outline" class="input">
+                    <mat-label>password</mat-label>
+                    <input matInput type="password" id="pswd" formControlName="password">
+                    <mat-error *ngIf="loginForm.get('password').invalid">this field is required</mat-error>
+                </mat-form-field><br>
+
+
+
+                <button type="submit" mat-raised-button color="primary" [disabled]="!loginForm.valid"
+                    class="raised-button">login</button>
+                <hr> Dont have an account?<a [routerLink]="['signup']"> Signup</a><br><br>
+
+            </form>
+        </mat-card-content>
+
+    </mat-card>
+</div>

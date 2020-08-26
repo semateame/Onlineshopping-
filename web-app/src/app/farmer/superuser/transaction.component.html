@@ -1,0 +1,30 @@
+
+<!-- <div>
+  <mat-form-field color="accent" appearance="outline">
+    <mat-label>Inherited calendar color</mat-label>
+    <input matInput [matDatepicker]="picker1" (keyup)="filterBydate(calander)"#calander>
+    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+    <mat-datepicker #picker1></mat-datepicker>
+  </mat-form-field>
+</div> -->
+
+
+
+<div *ngFor="let item of Data">
+<mat-accordion>
+    <mat-expansion-panel *ngFor="let i of item.orders">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+         transaction# :{{i.order_id}}
+        </mat-panel-title>
+        
+      </mat-expansion-panel-header>
+      <p>farmer-name:{{item.name}}</p>
+      <p>user-email:{{i.email}}</p>
+      <p>status : {{i.status}}</p>
+      <p>totalprice:{{i.totalprice | currency}}</p>
+      <p>Date:{{i.date}}</p>
+      <p></p>
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>

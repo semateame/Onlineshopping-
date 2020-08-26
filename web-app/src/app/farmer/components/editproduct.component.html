@@ -1,0 +1,25 @@
+<form [formGroup]="editForm" (ngSubmit)="onEdit()" class="editfrm">
+    <mat-form-field floatLable="auto" appearance="fill" class="editinput">
+        <mat-label>name</mat-label>
+        <input matInput type="text" id="name" formControlName="name">
+    </mat-form-field> <br>
+
+
+    <mat-form-field floatLable="auto" appearance="fill" class="editinput">
+        <mat-label>price</mat-label>
+        <input matInput type="number" id="price" formControlName="price">
+    </mat-form-field><br>
+
+    <mat-form-field floatLable="auto" appearance="fill" class="editinput">
+        <mat-label>image</mat-label>
+        <input matInput type="text" id="img" formControlName="image">
+    </mat-form-field><br>
+
+    <mat-form-field floatLable="auto" appearance="fill" class="editinput">
+        <mat-label>description</mat-label>
+        <textarea matInput type="text" id="img" formControlName="description"></textarea>
+    </mat-form-field><br>
+
+    <button type="submit" mat-raised-button color="primary" [disabled]="!editForm.valid">Edit</button>
+
+</form>

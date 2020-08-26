@@ -1,0 +1,58 @@
+<mat-grid-list cols="2" rowHeight="300px">
+  <mat-grid-tile rowspan="2">
+
+    <mat-card class="example-card">
+      <mat-card-header>
+        <!-- <div mat-card-avatar class="example-header-image"></div> -->
+        <mat-card-title>{{profile.name}}</mat-card-title>
+        <mat-card-subtitle>{{profile.email}}</mat-card-subtitle>
+      </mat-card-header>
+      <img mat-card-image src="http://neighborhoodonlinemarket-env.eba-mkbgjfpb.us-east-1.elasticbeanstalk.com/file/upload/{{profile.image}}" alt="Profile pic">
+      <mat-card-content>
+        <p>
+          Well come to neighborhood market this site helps vendors to sell their products online.
+          Once you logged in you can manage your product,you can see your orders and you have full
+          to your Inventories.
+
+        </p>
+      </mat-card-content>
+      <mat-card-actions>
+        <input #imgRef type="file" (change)="changeHandler($event)" hidden />
+        <button mat-button (click)="imgRef.click()">
+          <mat-icon>add_a_photo
+          </mat-icon>
+        </button>
+        <button mat-raised-button color="primary" (click)="uploadImage()">upload</button>
+      </mat-card-actions>
+    </mat-card>
+
+  </mat-grid-tile>
+
+  <mat-grid-tile rowspan="2" *ngIf="role" >
+
+    <table mat-table [dataSource]="products" class="mat-elevation-z8">
+
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="Product-name">
+        <th mat-header-cell *matHeaderCellDef> Product-name </th>
+        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+      </ng-container>
+    
+      <!-- quantity Column -->
+      <ng-container matColumnDef="Quantity">
+        <th mat-header-cell *matHeaderCellDef> Quantity </th>
+        <td mat-cell *matCellDef="let element"> {{element.qauntity}} </td>
+      </ng-container>
+    
+      <!-- price Column -->
+      <ng-container matColumnDef="Price">
+        <th mat-header-cell *matHeaderCellDef> Price </th>
+        <td mat-cell *matCellDef="let element"> {{element.price |currency}} </td>
+      </ng-container>
+    
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </mat-grid-tile>
+</mat-grid-list>

@@ -1,0 +1,32 @@
+<div class="order">
+
+    <div>
+        <mat-form-field appearance="outline" class="livesearch">
+            <mat-label>Search</mat-label>
+            <input matInput placeholder="status" (keyup)="Filterstatus(inpt)" #inpt>
+            <mat-icon matSuffix>search</mat-icon>
+        </mat-form-field>
+    </div>
+
+
+    <div class="grid" *ngFor="let item of data">
+        <mat-card class="example-card">
+            <mat-card-content class="mat-card-content mat-card-content">
+                <p>order#:{{item.order_id}}</p>
+                <p>sub-total:{{item.totalprice | currency}}</p>
+                <p>status:{{item.status}}</p>
+                <p>Date:{{item.date}}</p>
+            </mat-card-content>
+
+            <mat-card-actions class="mat-card-actions ">
+                <mat-radio-button value="ready" (click)="OnstausChange(item.order_id,readybtn,item.email) " #readybtn>
+                    Ready</mat-radio-button>
+                <mat-radio-button value="complete" (click)="OnstausChange(item.order_id,completebtn,item.email)"
+                    #completebtn>Complete</mat-radio-button>
+            </mat-card-actions>
+
+        </mat-card>
+    </div>
+
+
+</div>

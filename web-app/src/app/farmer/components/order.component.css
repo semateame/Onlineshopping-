@@ -1,0 +1,33 @@
+.example-card {
+    max-width: 90%;
+    margin-left: 25px;
+    height: 150px;
+    margin-bottom: 80px;
+    box-shadow: 0px 1px 1px 0px;
+}
+
+.btnn {
+    margin-left: 90px;
+}
+
+.mat-card-actions {
+    margin-left: 80%;
+    margin-right: -8px;
+    padding: 8px;
+}
+
+.mat-card-content {
+    font-size: 12px;
+}
+
+.mat-card-content {
+    margin-top: -3px;
+}
+.livesearch{
+margin:0 0 0 25px;
+width: 95%;
+}
+
+.order{
+    /* margin-top: 80px; */
+}

@@ -1,0 +1,444 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Finall project",
+    "description": "Back-end Apis",
+    "license": {
+      "name": "Miu",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+  "host": "localhost:3000",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "superUser",
+      "description": "Api for super user"
+    },
+    {
+      "name": "Farmer",
+      "description": "Api for farmer"
+    },
+    {
+      "name": "Customer",
+      "description": "Api for customer"
+    }
+  ],
+  "schemes": ["http", "https"],
+  "consume": ["application/json"],
+  "produce": ["application/json"],
+  "paths": {
+    "/auth/signup": {
+      "post": {
+        "tags": ["signup"],
+        "description": "register farmers and customers",
+        "parameters": [
+          {
+            "name": "signup",
+            "in": "body",
+            "description": "registering customers and farmers",
+            "schema": {
+              "$ref": "#/definitions/auth/signup"
+            }
+          }
+        ],
+        "produce": ["application/json"],
+        "response": {
+          "200": {
+            "description": "registration sucessfull",
+            "schema": {
+              "$ref": "#/definitions/auth/signup"
+            }
+          }
+        }
+      }
+    },
+    "/auth/signin": {
+      "post": {
+        "tags": ["login"],
+        "description": "logs farmers and customers",
+        "parameters": [
+          {
+            "name": "login",
+            "in": "body",
+            "description": "logs customers and farmers",
+            "schema": {
+              "$ref": "#/definitions/auth/signin"
+            }
+          }
+        ],
+        "produce": ["application/json"],
+        "response": {
+          "200": {
+            "description": "registration sucessfull",
+            "schema": {
+              "$ref": "#/definitions/auth/signin"
+            }
+          }
+        }
+      }
+    },
+    "/admin": {
+      "get": {
+        "tags": ["superuser"],
+        "summary": "gets all the requests made by farmers and customers",
+        "response": {
+          "200": {
+            "description": "ok",
+            "schema": {
+              "$ref": "#/definitions/admin"
+            }
+          }
+        }
+      }
+    },
+    "/admin/farmers": {
+      "patch": {
+        "tags": ["superuser"],
+        "parameters": [
+          {
+            "name": "",
+            "in": "body",
+            "description": "admin can activate/deactivate farmer",
+            "schema": {
+              "$ref": "#/definitions/admin/farmes"
+            }
+          }
+        ],
+        "produce": ["application/json"],
+        "response": {
+          "200": {
+            "description": "requested completed sucessfully",
+            "schema": {
+              "$ref": "#/definitions/admin"
+            }
+          }
+        }
+      }
+    },
+    "/admin/customers": {
+      "patch": {
+        "tags": ["superuser"],
+        "parameters": [
+          {
+            "name": "",
+            "in": "body",
+            "description": "admin can  activate/deactivate users",
+            "schema": {
+              "$ref": "#/definitions/admin/farmes"
+            }
+          }
+        ],
+        "produce": ["application/json"],
+        "response": {
+          "200": {
+            "description": "requested completed sucessfully",
+            "schema": {
+              "$ref": "#/definitions/admin"
+            }
+          }
+        }
+      }
+    },
+    "/farmers/:id": {
+      "get": {
+        "tags": ["farmer"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "gets products of activated farmers",
+            "schema": {
+              "$ref": "#/definitions/farmers/:id"
+            }
+          }
+        ],
+        "summary": "gets all products of a farmer",
+        "response": {
+          "200": {
+            "description": "ok",
+            "schema": {
+              "$ref": "#/definitions/farmers:id"
+            }
+          }
+        }
+      }
+    },
+    "/farmers/:id/:pId": {
+      "patch": {
+        "tags": ["farmer"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id of a farmer",
+            "schema": {
+              "$ref": "#/definitions/farmers/:id"
+            }
+          },
+          {
+            "name": "pId",
+            "in": "path",
+            "description": "id of the selested product",
+            "$ref": "#/definitions/farmers:id/:pId"
+          }
+        ],
+        "summary": "edits slected product of afarmer",
+        "response": {
+          "200": {
+            "description": "ok",
+            "schema": {
+              "$ref": "#/definitions/farmers/:id/:pId"
+            }
+          }
+        }
+      }
+    },
+    "/farmers/orders/:id": {
+      "get": {
+        "tags": ["farmer"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id of a farmer",
+            "schema": {
+              "$ref": "#/definitions/farmers/orders/:id"
+            }
+          }
+        ],
+        "summary": "gets orderes of customers of a afarmer",
+        "response": {
+          "200": {
+            "description": "ok",
+            "schema": {
+              "$ref": "#/definitions/farmers/orders/:id"
+            }
+          }
+        }
+      }
+    },
+    "/customers/farmers/": {
+      "get": {
+        "tags": ["customers"],
+
+        "summary": "Displays  activated farmers to customers",
+        "response": {
+          "200": {
+            "description": "ok",
+            "schema": {
+              "$ref": "#/definitions/customers/farmers"
+            }
+          }
+        }
+      }
+    },
+    "/customers/farmers/:id": {
+      "get": {
+        "tags": ["customers"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id of a farmer",
+            "schema": {
+              "$ref": "#/definitions/customers/farmers/:id"
+            }
+          }
+        ],
+        "summary": "lists products of a farmer to customer",
+        "response": {
+          "200": {
+            "description": "ok",
+            "schema": {
+              "$ref": "#/definitions/customers/farmers/:id"
+            }
+          }
+        }
+      }
+    },
+    "/customers/:id": {
+      "post": {
+        "tags": ["customers"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id of a customer",
+            "schema": {
+              "$ref": "#/definitions/customers/:id"
+            }
+          },
+          {
+            "name": "cart",
+            "in": "body",
+            "description": "product to be add to cart",
+            "schema": {
+              "$ref": "#/definitions/customers/:id"
+            }
+          }
+        ],
+        "summary": "Adds products to customers cart ",
+        "response": {
+          "200": {
+            "description": "ok",
+            "schema": {
+              "$ref": "#/definitions/customers/:id"
+            }
+          }
+        }
+      }
+    },
+    "/customers/orders/:id": {
+      "post": {
+        "tags": ["customers"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id of a farmer",
+            "schema": {
+              "$ref": "#/definitions/customers/orders/:id"
+            }
+          },
+          {
+            "name": "order",
+            "in": "body",
+            "description": "order to be placed ",
+            "schema": {
+              "$ref": "#/definitions/customers/orders/:id"
+            }
+          }
+        ],
+        "summary": "customers place their order to specifc farmer",
+        "response": {
+          "200": {
+            "description": "ok",
+            "schema": {
+              "$ref": "#/definitions/customers/:id"
+            }
+          }
+        }
+      }
+    },
+    "customers/orders/:id/:usrId": {
+      "post": {
+        "tags": ["customers"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id of a farmer",
+            "schema": {
+              "$ref": "#/definitions/customers/orders/:id/:usrId"
+            }
+          },
+          {
+            "name": "usrId",
+            "in": "path",
+            "description": "id of customer ",
+            "schema": {
+              "$ref": "#/definitions/customers/orders/:id/:usrId"
+            }
+          }
+        ],
+        "summary": "customers can see their order history ",
+        "response": {
+          "200": {
+            "description": "ok",
+            "schema": {
+              "$ref": "#/definitions/customers/orders/:id/:usrId"
+            }
+          }
+        }
+      }
+    },
+    "/customers": {
+      "patch": {
+        "tags": ["customers"],
+        "parameters": [
+          {
+            "name": "rate",
+            "in": "body",
+            "description": "rate of the customer ",
+            "schema": {
+              "$ref": "#/definitions/customers"
+            }
+          }
+        ],
+        "summary": "customers  ableto rate the farmers  ",
+        "response": {
+          "200": {
+            "description": "ok",
+            "schema": {
+              "$ref": "#/definitions/customers"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "farmer": {
+      "reuqired": ["name", "email", "password", "activate"],
+      "properties": {
+        "image": {
+          "type": "String"
+        },
+        "name": {
+          "type": "String",
+          "required": true
+        },
+        "email": {
+          "type": "String",
+          "required": true
+        },
+        "password": {
+          "type": "String",
+          "required": true
+        },
+        "products": {
+          "type": "Array"
+        },
+        "role": {
+          "type": "String"
+        },
+        "orders": [],
+        "activate": {
+          "type": "Boolean",
+          "default": true
+        },
+        "rate": {
+          "type": "Number",
+          "default": 0
+        }
+      }
+    },
+    "customer": {
+      "required": ["name", "email", "password", "activate"],
+      "properties":{
+        "name": {
+            "type": "String",
+            "required": true
+        },
+        "email": {
+            "type": "String",
+            "required": true
+        },
+        "password": {
+            "type": "String",
+            "required": true
+        },
+        "role": {
+            "type": "String"
+        },
+        "cart": { "item": [{ "type": "Object" }], "totalprice": { "type": "Number", "default": 0 },"farmerId":{"type":"String"} },
+        "activate": {
+            "type": "Boolean",
+            "default": true
+        }
+      }
+    }
+  }
+}

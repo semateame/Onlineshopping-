@@ -1,0 +1,29 @@
+<form [formGroup]="addForm" (ngSubmit)="onAdd()" class="frmclass">
+    <mat-form-field appearance="outline" class="addinput">
+        <mat-label>Name of product</mat-label>
+        <input type="text" matInput formControlName="name">
+    </mat-form-field><br>
+
+    <mat-form-field appearance="outline" class="addinput">
+        <mat-label>price</mat-label>
+        <input type="number" matInput formControlName="price">
+    </mat-form-field><br>
+
+    <mat-form-field appearance="outline" class="addinput">
+        <mat-label>quantity</mat-label>
+        <input type="number" matInput formControlName="qauntity">
+    </mat-form-field><br>
+    <mat-form-field appearance="outline" class="addinput">
+        <mat-label>description</mat-label>
+        <textarea matInput formControlName="description"></textarea>
+
+    </mat-form-field> <br>
+
+    <label>image</label><br>
+    <input type="file" (change)="changehandler($event)" formControlName="image"><br>
+
+
+
+    <button type="submit" mat-raised-button color="primary" [disabled]="!addForm.valid">Add</button>
+
+</form>

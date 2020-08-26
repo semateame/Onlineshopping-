@@ -1,0 +1,35 @@
+<mat-toolbar color="primary" class="header">
+
+    <!-- <span class="example-spacer"></span> -->
+    <a mat-button [routerLink]="['home']" class="btn1">Profile</a>
+
+    <button *ngIf="!role" mat-button [matMenuTriggerFor]="menu1">Services</button>
+    <mat-menu #menu1="matMenu">
+        <button mat-menu-item (click)="showproducts()">products</button>
+        <button mat-menu-item (click)="showorders()">orders</button>
+
+    </mat-menu>
+
+    <button *ngIf="role" mat-button [matMenuTriggerFor]="menu">Manage</button>
+    <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="getfarmers()">Farmers</button>
+        <button mat-menu-item (click)="getcustomers()"> Customers</button>
+        <button  mat-menu-item (click)="gettransaction()">Transaction</button>
+        <button mat-menu-item (click)="getlogs()">Logs</button>
+
+
+    </mat-menu>
+    <span class=" example-spacer "></span>
+    <button *ngIf="!role"mat-button (click)="addproduct() " class="btn1 ">
+       Add-products
+    </button>
+    <button mat-button (click)="logout() " class="btn1 ">
+       Log-out
+     </button>
+
+</mat-toolbar>
+<div class="lazyoutlet ">
+
+    <router-outlet>
+    </router-outlet>
+</div>
